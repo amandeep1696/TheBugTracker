@@ -35,9 +35,10 @@ namespace TheBugTracker.Services
             return result;
         }
 
-        public Task<IEnumerable<string>> GetUserRolesAsync(BTUser user)
+        public async Task<IEnumerable<string>> GetUserRolesAsync(BTUser user)
         {
-            throw new NotImplementedException();
+            IEnumerable<string> result = await _userManager.GetRolesAsync(user);
+            return result;
         }
 
         public Task<List<BTUser>> GetUsersInRoleAsync(string roleName, int companyId)
