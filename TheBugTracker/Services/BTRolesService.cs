@@ -41,9 +41,11 @@ namespace TheBugTracker.Services
             return result;
         }
 
-        public Task<List<BTUser>> GetUsersInRoleAsync(string roleName, int companyId)
+        public async Task<List<BTUser>> GetUsersInRoleAsync(string roleName, int companyId)
         {
-            throw new NotImplementedException();
+            List<BTUser> users = (await _userManager.GetUsersInRoleAsync(roleName)).ToList();
+            List<BTUser> result = users.Where(u => u.CompanyId == companyId).ToList();
+            return result;
         }
 
         public Task<List<BTUser>> GetUsersNotInRoleAsync(string roleName, int companyId)
