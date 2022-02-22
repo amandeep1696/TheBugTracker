@@ -28,9 +28,11 @@ namespace TheBugTracker.Services
             return result;
         }
 
-        public Task<string> GetRoleNameByIdAsync(string roleId)
+        public async Task<string> GetRoleNameByIdAsync(string roleId)
         {
-            throw new NotImplementedException();
+            IdentityRole role = _context.Roles.Find(roleId);
+            string result = await _roleManager.GetRoleNameAsync(role);
+            return result;
         }
 
         public Task<IEnumerable<string>> GetUserRolesAsync(BTUser user)
