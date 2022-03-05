@@ -11,7 +11,7 @@ namespace TheBugTracker.Services
 {
     public class BTLookupService : IBTLookupService
     {
-        private readonly ApplicationDbContext _context
+        private readonly ApplicationDbContext _context;
 
         public BTLookupService(ApplicationDbContext context)
         {
