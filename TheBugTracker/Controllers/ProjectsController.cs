@@ -70,8 +70,17 @@ namespace TheBugTracker.Controllers
             }
             else
             {
-                projects = await _projectService.GetAllProjectsByCompany(companyId);
+                projects = await _projectService.GetAllProjectsByCompanyAsync(companyId);
             }
+
+            return View(projects);
+        }
+
+        public async Task<IActionResult> ArchivedProjects()
+        {
+            int companyId = User.Identity.GetCompanyId().Value;
+
+            List<Project> projects = await _projectService.GetArchivedProjectsByCompanyAsync(companyId);
 
             return View(projects);
         }
